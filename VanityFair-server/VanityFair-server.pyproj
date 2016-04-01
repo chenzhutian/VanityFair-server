@@ -19,7 +19,7 @@
     <PythonWsgiHandler>$(MSBuildProjectName).app</PythonWsgiHandler>
     <Name>VanityFair-server</Name>
     <RootNamespace>VanityFair_server</RootNamespace>
-    <InterpreterId>{0f384f65-7193-49ee-bdfe-d2cec634c504}</InterpreterId>
+    <InterpreterId>{7c9db7ba-fb8d-4cc7-9cc8-9b12ff31627d}</InterpreterId>
     <InterpreterVersion>3.5</InterpreterVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -73,11 +73,11 @@
     <Content Include="VanityFair_server\templates\layout.html" />
   </ItemGroup>
   <ItemGroup>
-    <Interpreter Include="env\">
-      <Id>{0f384f65-7193-49ee-bdfe-d2cec634c504}</Id>
+    <Interpreter Include="ENV\">
+      <Id>{7c9db7ba-fb8d-4cc7-9cc8-9b12ff31627d}</Id>
       <BaseInterpreter>{9a7a9026-48c1-4688-9d5d-e5699d47d074}</BaseInterpreter>
       <Version>3.5</Version>
-      <Description>env (Python 64-bit 3.5)</Description>
+      <Description>ENV (Python 64-bit 3.5)</Description>
       <InterpreterPath>Scripts\python.exe</InterpreterPath>
       <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
       <LibraryPath>Lib\</LibraryPath>
