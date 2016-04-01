@@ -19,7 +19,7 @@
     <PythonWsgiHandler>$(MSBuildProjectName).app</PythonWsgiHandler>
     <Name>VanityFair-server</Name>
     <RootNamespace>VanityFair_server</RootNamespace>
-    <InterpreterId>{7c9db7ba-fb8d-4cc7-9cc8-9b12ff31627d}</InterpreterId>
+    <InterpreterId>{4785f966-7223-4151-8f77-a72089584d41}</InterpreterId>
     <InterpreterVersion>3.5</InterpreterVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -32,52 +32,52 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="runserver.py" />
-    <Compile Include="VanityFair_server\__init__.py" />
-    <Compile Include="VanityFair_server\views.py" />
+    <Compile Include="VanityFairServer\__init__.py" />
+    <Compile Include="VanityFairServer\views.py" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="VanityFair_server\" />
-    <Folder Include="VanityFair_server\static\" />
-    <Folder Include="VanityFair_server\static\content\" />
-    <Folder Include="VanityFair_server\static\fonts\" />
-    <Folder Include="VanityFair_server\static\scripts\" />
-    <Folder Include="VanityFair_server\templates\" />
+    <Folder Include="VanityFairServer\" />
+    <Folder Include="VanityFairServer\static\" />
+    <Folder Include="VanityFairServer\static\content\" />
+    <Folder Include="VanityFairServer\static\fonts\" />
+    <Folder Include="VanityFairServer\static\scripts\" />
+    <Folder Include="VanityFairServer\templates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="requirements.txt" />
-    <Content Include="VanityFair_server\static\content\bootstrap.css" />
-    <Content Include="VanityFair_server\static\content\bootstrap.min.css" />
-    <Content Include="VanityFair_server\static\content\site.css" />
-    <Content Include="VanityFair_server\static\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="VanityFair_server\static\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="VanityFair_server\static\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="VanityFair_server\static\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="VanityFair_server\static\scripts\bootstrap.js" />
-    <Content Include="VanityFair_server\static\scripts\bootstrap.min.js" />
-    <Content Include="VanityFair_server\static\scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="VanityFair_server\static\scripts\jquery-1.10.2.js" />
-    <Content Include="VanityFair_server\static\scripts\jquery-1.10.2.min.js" />
-    <Content Include="VanityFair_server\static\scripts\jquery-1.10.2.min.map" />
-    <Content Include="VanityFair_server\static\scripts\jquery.validate-vsdoc.js" />
-    <Content Include="VanityFair_server\static\scripts\jquery.validate.js" />
-    <Content Include="VanityFair_server\static\scripts\jquery.validate.min.js" />
-    <Content Include="VanityFair_server\static\scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="VanityFair_server\static\scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="VanityFair_server\static\scripts\modernizr-2.6.2.js" />
-    <Content Include="VanityFair_server\static\scripts\respond.js" />
-    <Content Include="VanityFair_server\static\scripts\respond.min.js" />
-    <Content Include="VanityFair_server\static\scripts\_references.js" />
-    <Content Include="VanityFair_server\templates\about.html" />
-    <Content Include="VanityFair_server\templates\contact.html" />
-    <Content Include="VanityFair_server\templates\index.html" />
-    <Content Include="VanityFair_server\templates\layout.html" />
+    <Content Include="VanityFairServer\static\content\bootstrap.css" />
+    <Content Include="VanityFairServer\static\content\bootstrap.min.css" />
+    <Content Include="VanityFairServer\static\content\site.css" />
+    <Content Include="VanityFairServer\static\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="VanityFairServer\static\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="VanityFairServer\static\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="VanityFairServer\static\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="VanityFairServer\static\scripts\bootstrap.js" />
+    <Content Include="VanityFairServer\static\scripts\bootstrap.min.js" />
+    <Content Include="VanityFairServer\static\scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="VanityFairServer\static\scripts\jquery-1.10.2.js" />
+    <Content Include="VanityFairServer\static\scripts\jquery-1.10.2.min.js" />
+    <Content Include="VanityFairServer\static\scripts\jquery-1.10.2.min.map" />
+    <Content Include="VanityFairServer\static\scripts\jquery.validate-vsdoc.js" />
+    <Content Include="VanityFairServer\static\scripts\jquery.validate.js" />
+    <Content Include="VanityFairServer\static\scripts\jquery.validate.min.js" />
+    <Content Include="VanityFairServer\static\scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="VanityFairServer\static\scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="VanityFairServer\static\scripts\modernizr-2.6.2.js" />
+    <Content Include="VanityFairServer\static\scripts\respond.js" />
+    <Content Include="VanityFairServer\static\scripts\respond.min.js" />
+    <Content Include="VanityFairServer\static\scripts\_references.js" />
+    <Content Include="VanityFairServer\templates\about.html" />
+    <Content Include="VanityFairServer\templates\contact.html" />
+    <Content Include="VanityFairServer\templates\index.html" />
+    <Content Include="VanityFairServer\templates\layout.html" />
   </ItemGroup>
   <ItemGroup>
-    <Interpreter Include="ENV\">
-      <Id>{7c9db7ba-fb8d-4cc7-9cc8-9b12ff31627d}</Id>
+    <Interpreter Include="venv\">
+      <Id>{4785f966-7223-4151-8f77-a72089584d41}</Id>
       <BaseInterpreter>{9a7a9026-48c1-4688-9d5d-e5699d47d074}</BaseInterpreter>
       <Version>3.5</Version>
-      <Description>ENV (Python 64-bit 3.5)</Description>
+      <Description>venv (Python 64-bit 3.5)</Description>
       <InterpreterPath>Scripts\python.exe</InterpreterPath>
       <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
       <LibraryPath>Lib\</LibraryPath>
