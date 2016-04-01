@@ -188,5 +188,5 @@ GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
 
-
-VanityFair-server/env/
+*.sln
+./VanityFair-server/env/
