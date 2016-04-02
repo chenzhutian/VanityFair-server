@@ -4,11 +4,12 @@ This script runs the VanityFair_server application using a development server.
 
 from os import environ
 from DataCenter import BillBoard as bb
+from DataCenter import Crawler as cr
 from VanityFairServer import app
 
 if __name__ == '__main__':
-    print(bb.GetBillBoardOn("2016-03-31"))
-    
+    print("dd")
+    print(cr.GetBillBoardDataFromTHSOn())
     #HOST = environ.get('SERVER_HOST', 'localhost')
     #try:
     #    PORT = int(environ.get('SERVER_PORT', '5555'))

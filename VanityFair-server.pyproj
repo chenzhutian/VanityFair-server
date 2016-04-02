@@ -34,6 +34,9 @@
     <Compile Include="DataCenter\BillBoard.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DataCenter\Crawler.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DataCenter\__init__.py">
       <SubType>Code</SubType>
     </Compile>
