@@ -31,11 +31,18 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DataCenter\BillBoard.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataCenter\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="runserver.py" />
     <Compile Include="VanityFairServer\__init__.py" />
     <Compile Include="VanityFairServer\views.py" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DataCenter\" />
     <Folder Include="VanityFairServer\" />
     <Folder Include="VanityFairServer\static\" />
     <Folder Include="VanityFairServer\static\content\" />
