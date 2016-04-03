@@ -9,7 +9,7 @@ from VanityFairServer import app
 
 if __name__ == '__main__':
     print("dd")
-    print(cr.GetBillBoardDataFromTHSOn())
+    cr.GetBillBoardDetailDataFromEM("2015-11-10","002289")
     #HOST = environ.get('SERVER_HOST', 'localhost')
     #try:
     #    PORT = int(environ.get('SERVER_PORT', '5555'))

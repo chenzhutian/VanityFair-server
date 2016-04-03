@@ -12,7 +12,7 @@
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
-    <LaunchProvider>Web launcher</LaunchProvider>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
     <OutputPath>.</OutputPath>
     <StaticUriPattern>^/static/.*</StaticUriPattern>
     <StaticUriRewrite>^/$(MSBuildProjectName)/static/.*</StaticUriRewrite>
@@ -21,6 +21,7 @@
     <RootNamespace>VanityFair_server</RootNamespace>
     <InterpreterId>{4785f966-7223-4151-8f77-a72089584d41}</InterpreterId>
     <InterpreterVersion>3.5</InterpreterVersion>
+    <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
