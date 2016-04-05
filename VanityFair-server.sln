@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "VanityFair-server", "VanityFair-server.pyproj", "{22DFE322-B8DD-4E2D-BB07-A857B0072400}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Crawler", "Crawler\Crawler.pyproj", "{4B84BC11-B039-4990-BA9E-F4014C9A795C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{22DFE322-B8DD-4E2D-BB07-A857B0072400}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22DFE322-B8DD-4E2D-BB07-A857B0072400}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22DFE322-B8DD-4E2D-BB07-A857B0072400}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B84BC11-B039-4990-BA9E-F4014C9A795C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B84BC11-B039-4990-BA9E-F4014C9A795C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

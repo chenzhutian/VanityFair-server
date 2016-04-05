@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<ProfilingTarget xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectTarget>
+    <TargetProject>4b84bc11-b039-4990-ba9e-f4014c9a795c</TargetProject>
+    <FriendlyName>Crawler</FriendlyName>
+  </ProjectTarget>
+  <Reports>
+    <Report>
+      <Filename>C:\Users\zhutian.chen\AppData\Local\Temp\Crawler_20160405.vsp</Filename>
+    </Report>
+  </Reports>
+</ProfilingTarget>

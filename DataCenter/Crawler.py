@@ -12,6 +12,9 @@ client = MongoClient()
 db = client.BillBoard
 collection = db.BillBoardEveryDay
 
+def CrawlBillBoardData(start,end):
+    pass
+
 def EMOverviewDataUrlGen(date):
     return "http://data.eastmoney.com/stock/lhb/" + date + ".html"
 
