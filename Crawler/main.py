@@ -10,7 +10,7 @@ if __name__ == "__main__":
     db = client.BillBoard
     collection = db.BillBoardEveryDay
     
-    start = date(2016, 1, 1)
-    end = date(2016, 4, 6)
+    start = date(2013, 1, 1)
+    end = date(2013, 12, 31)
     crawl_billboard_data(start, end, collection)
     

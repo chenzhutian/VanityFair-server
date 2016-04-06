@@ -45,7 +45,7 @@ def get_overview_data(start_date, end_date, collection):
         else:
             json.dump({"date":start_date.strftime("%Y-%m-%d"), 
                        "statusCode":request_result.status_code, 
-                       "time":datetime.now()}, LOG_TO_FILE)
+                       "time":datetime.now().strftime("%Y-%m-%d %H:%M:%S")}, LOG_TO_FILE)
             return False
 
     result = re.sub('([{,])([^{:\s"]*):', lambda m: '%s"%s":' % (m.group(1), m.group(2)), 
@@ -54,7 +54,7 @@ def get_overview_data(start_date, end_date, collection):
         result = json.loads(result)
     except:
         json.dump({"date":start_date.strftime("%Y-%m-%d"), "statusCode":request_result.status_code,
-                   "time":datetime.now()}, LOG_TO_FILE)
+                   "time":datetime.now().strftime("%Y-%m-%d %H:%M:%S")}, LOG_TO_FILE)
         return False
     
     heads = ["日期", "代码", "名称", "上榜原因", "detail_code", "收盘价", "涨跌幅"]
@@ -88,6 +88,7 @@ def merge_detail_with_overview_data(doc, date, stock_code, detail_code, collecti
         for key in detail_doc:
             doc[key] = detail_doc[key]
         del doc["detail_code"]
+        ##doc["日期"] = datetime.strptime(doc["日期"],"%Y-%m-%d")
         collection.insert_one(doc)
 
 def get_detail_data(date, stock_code, detail_code):
@@ -103,7 +104,7 @@ def get_detail_data(date, stock_code, detail_code):
         else:
             json.dump({"date":date, "stockCode":stock_code, "detail_code":detail_code, 
                        "statusCode":requests_result.status_code, 
-                       "time":datetime.now()}, LOG_TO_FILE)
+                       "time":datetime.now().strftime("%Y-%m-%d %H:%M:%S")}, LOG_TO_FILE)
             return None
 
     result = re.sub('([{,])([^{:\s"]*):', lambda m: '%s"%s":' % (m.group(1), m.group(2)),
@@ -111,15 +112,21 @@ def get_detail_data(date, stock_code, detail_code):
     try:
         result = json.loads(result)
     except:
-        json.dump({"date":date.strftime("%Y-%m-%d"), "statusCode":requests_result.status_code,
-                   "time":datetime.now()}, LOG_TO_FILE)
-        return False
+        json.dump({"date":date, "statusCode":requests_result.status_code,
+                   "time":datetime.now().strftime("%Y-%m-%d %H:%M:%S")}, LOG_TO_FILE)
+        return None
 
     heads = ["代码", "名称", "BorS", "nouse", "日期", "单位名称", "买入额", "卖出额"]
     try:
         cje = round(float(result["_cje"]) / 10000, 2)
     except ValueError:
         cje = "--" 
+    except KeyError:
+        json.dump({"date":date, "statusCode":requests_result.status_code,
+                   "time":datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "result":result}, 
+                  LOG_TO_FILE)
+        return None
+
     detail_doc = {"成交额":cje, "成交量":result["_cjl"]}
     buyers = []
     sellers = []
@@ -151,7 +158,7 @@ def crawl_billboard_data(start, end, collection):
     current = start
     next_current = start
     span = 5
-    while current < end:
+    while current <= end:
         next_current += timedelta(span)
         if next_current > end:
             next_current = end
