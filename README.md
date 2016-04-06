@@ -1,4 +1,5 @@
 # VanityFair-server
 
-_init this project_
+~~init this project~~
+
 crawler for billboard data is almost done
