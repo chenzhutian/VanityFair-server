@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4b84bc11-b039-4990-ba9e-f4014c9a795c</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Crawler.py</StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -26,7 +26,13 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Crawler.py" />
+    <Compile Include="DataFromQQ.py" />
+    <Compile Include="DataFromEM.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="main.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="UrlGen.py">
       <SubType>Code</SubType>
     </Compile>
