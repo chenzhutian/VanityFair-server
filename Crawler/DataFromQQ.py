@@ -7,7 +7,7 @@ import gevent
 import re
 import json
 from bs4 import BeautifulSoup as bs
-from datetime import timedelta, date,datetime
+from datetime import timedelta, date, datetime
 from UrlGen import *
 
 # 日期 代码 名称 上榜原因 收盘价 涨跌幅 成交量 成交额 买入s：[代码 日期 单位名称,买入额，卖出额] 卖出s:[代码 日期
@@ -44,7 +44,7 @@ def GetOverviewDataFromQQ(startDate,endDate, collection):
     except:
         json.dump({"date":startDate.strftime("%Y-%m-%d"),"statusCode":r.status_code,"time":datetime.now()},LogToFile)
         return False
-
+    
     heads = ["日期","代码","名称","上榜原因","detailCode","收盘价","涨跌幅"]
     docs = {}
     stockDetailCodes = set()
@@ -64,6 +64,7 @@ def GetOverviewDataFromQQ(startDate,endDate, collection):
         threads.append(gevent.spawn(AsyncMergeDetailDataToOverviewDataFromQQ,docs[stockDetailCode],docs[stockDetailCode]["日期"],stockCode,detailCode,collection))
             
     gevent.joinall(threads)
+    print(startDate.strftime("%Y-%m-%d"),endDate.strftime("%Y-%m-%d"))
     return True
 
 def AsyncMergeDetailDataToOverviewDataFromQQ(doc,date,stockCode,detailCode,collection):
@@ -90,7 +91,7 @@ def GetDetailDataFromQQ(date,stockCode,detailCode):
     try:
         result = json.loads(result)
     except:
-        json.dump({"date":startDate.strftime("%Y-%m-%d"),"statusCode":r.status_code,"time":datetime.now()},LogToFile)
+        json.dump({"date":date.strftime("%Y-%m-%d"),"statusCode":r.status_code,"time":datetime.now()},LogToFile)
         return False
 
     heads = ["代码","名称","BorS","nouse","日期","单位名称","买入额","卖出额"]
@@ -134,5 +135,3 @@ def CrawlBillBoardData(start,end,collection):
         current = nextCurrent - timedelta(1)
     LogToFile.close()
    
-
-    
