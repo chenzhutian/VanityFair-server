@@ -6,7 +6,7 @@ from DataFromQQ import crawl_billboard_data
 
 if __name__ == "__main__":
     # connect to mongodb
-    client = MongoClient()
+    client = MongoClient("localhost",27016)
     db = client.BillBoard
     collection = db.BillBoardEveryDay
     

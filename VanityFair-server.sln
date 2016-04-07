@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "VanityFair-server", "VanityFair-server.pyproj", "{22DFE322-B8DD-4E2D-BB07-A857B0072400}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Crawler", "Crawler\Crawler.pyproj", "{4B84BC11-B039-4990-BA9E-F4014C9A795C}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Crawler-seperate", "Crawler\Crawler-seperate.pyproj", "{4B84BC11-B039-4990-BA9E-F4014C9A795C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

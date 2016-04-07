@@ -4,18 +4,20 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4b84bc11-b039-4990-ba9e-f4014c9a795c</ProjectGuid>
-    <ProjectHome>.</ProjectHome>
+    <ProjectHome>
+    </ProjectHome>
     <StartupFile>main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>Crawler</Name>
+    <Name>Crawler-seperate</Name>
     <RootNamespace>Crawler</RootNamespace>
     <InterpreterId>{0335b434-c62e-4a54-ab67-418fa3ba9ef1}</InterpreterId>
     <InterpreterVersion>3.5</InterpreterVersion>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
+    <PublishUrl>ftp://vis.cse.ust.hk:21</PublishUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -26,14 +28,14 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DataFromQQ.py" />
-    <Compile Include="DataFromEM.py">
+    <Compile Include="qq_data.py" />
+    <Compile Include="em_data.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="main.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UrlGen.py">
+    <Compile Include="url_generator.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

@@ -12,7 +12,7 @@
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
-    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <LaunchProvider>Web launcher</LaunchProvider>
     <OutputPath>.</OutputPath>
     <StaticUriPattern>^/static/.*</StaticUriPattern>
     <StaticUriRewrite>^/$(MSBuildProjectName)/static/.*</StaticUriRewrite>
@@ -23,6 +23,9 @@
     <InterpreterVersion>3.5</InterpreterVersion>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <IsWindowsApplication>False</IsWindowsApplication>
+    <PublishUrl>
+    </PublishUrl>
+    <NameOfLastUsedPublishProfile>VisFTP</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,56 +36,51 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DataCenter\BillBoard.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DataCenter\Crawler.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DataCenter\__init__.py">
+    <Compile Include="data_center\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="runserver.py" />
-    <Compile Include="VanityFairServer\__init__.py" />
-    <Compile Include="VanityFairServer\views.py" />
+    <Compile Include="vanityfair_server\__init__.py" />
+    <Compile Include="vanityfair_server\views.py" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DataCenter\" />
-    <Folder Include="VanityFairServer\" />
-    <Folder Include="VanityFairServer\static\" />
-    <Folder Include="VanityFairServer\static\content\" />
-    <Folder Include="VanityFairServer\static\fonts\" />
-    <Folder Include="VanityFairServer\static\scripts\" />
-    <Folder Include="VanityFairServer\templates\" />
+    <Folder Include="data_center\" />
+    <Folder Include="vanityfair_server\" />
+    <Folder Include="vanityfair_server\static\" />
+    <Folder Include="vanityfair_server\static\content\" />
+    <Folder Include="vanityfair_server\static\fonts\" />
+    <Folder Include="vanityfair_server\static\scripts\" />
+    <Folder Include="vanityfair_server\templates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="requirements.txt" />
-    <Content Include="VanityFairServer\static\content\bootstrap.css" />
-    <Content Include="VanityFairServer\static\content\bootstrap.min.css" />
-    <Content Include="VanityFairServer\static\content\site.css" />
-    <Content Include="VanityFairServer\static\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="VanityFairServer\static\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="VanityFairServer\static\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="VanityFairServer\static\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="VanityFairServer\static\scripts\bootstrap.js" />
-    <Content Include="VanityFairServer\static\scripts\bootstrap.min.js" />
-    <Content Include="VanityFairServer\static\scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="VanityFairServer\static\scripts\jquery-1.10.2.js" />
-    <Content Include="VanityFairServer\static\scripts\jquery-1.10.2.min.js" />
-    <Content Include="VanityFairServer\static\scripts\jquery-1.10.2.min.map" />
-    <Content Include="VanityFairServer\static\scripts\jquery.validate-vsdoc.js" />
-    <Content Include="VanityFairServer\static\scripts\jquery.validate.js" />
-    <Content Include="VanityFairServer\static\scripts\jquery.validate.min.js" />
-    <Content Include="VanityFairServer\static\scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="VanityFairServer\static\scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="VanityFairServer\static\scripts\modernizr-2.6.2.js" />
-    <Content Include="VanityFairServer\static\scripts\respond.js" />
-    <Content Include="VanityFairServer\static\scripts\respond.min.js" />
-    <Content Include="VanityFairServer\static\scripts\_references.js" />
-    <Content Include="VanityFairServer\templates\about.html" />
-    <Content Include="VanityFairServer\templates\contact.html" />
-    <Content Include="VanityFairServer\templates\index.html" />
-    <Content Include="VanityFairServer\templates\layout.html" />
+    <Content Include="vanityfair_server\static\content\bootstrap.css" />
+    <Content Include="vanityfair_server\static\content\bootstrap.min.css" />
+    <Content Include="vanityfair_server\static\content\site.css" />
+    <Content Include="vanityfair_server\static\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="vanityfair_server\static\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="vanityfair_server\static\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="vanityfair_server\static\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="vanityfair_server\static\scripts\bootstrap.js" />
+    <Content Include="vanityfair_server\static\scripts\bootstrap.min.js" />
+    <Content Include="vanityfair_server\static\scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="vanityfair_server\static\scripts\jquery-1.10.2.js" />
+    <Content Include="vanityfair_server\static\scripts\jquery-1.10.2.min.js" />
+    <Content Include="vanityfair_server\static\scripts\jquery-1.10.2.min.map" />
+    <Content Include="vanityfair_server\static\scripts\jquery.validate-vsdoc.js" />
+    <Content Include="vanityfair_server\static\scripts\jquery.validate.js" />
+    <Content Include="vanityfair_server\static\scripts\jquery.validate.min.js" />
+    <Content Include="vanityfair_server\static\scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="vanityfair_server\static\scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="vanityfair_server\static\scripts\modernizr-2.6.2.js" />
+    <Content Include="vanityfair_server\static\scripts\respond.js" />
+    <Content Include="vanityfair_server\static\scripts\respond.min.js" />
+    <Content Include="vanityfair_server\static\scripts\_references.js" />
+    <Content Include="vanityfair_server\templates\about.html" />
+    <Content Include="vanityfair_server\templates\contact.html" />
+    <Content Include="vanityfair_server\templates\index.html" />
+    <Content Include="vanityfair_server\templates\layout.html" />
+    <None Include="VisFTP.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="venv\">
