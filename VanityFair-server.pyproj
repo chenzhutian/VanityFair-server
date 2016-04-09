@@ -40,12 +40,28 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="runserver.py" />
+    <Compile Include="vanityfair_server\api\test_apt.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="vanityfair_server\api\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="vanityfair_server\app.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="vanityfair_server\view\home.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="vanityfair_server\view\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="vanityfair_server\__init__.py" />
-    <Compile Include="vanityfair_server\views.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="data_center\" />
     <Folder Include="vanityfair_server\" />
+    <Folder Include="vanityfair_server\api\" />
+    <Folder Include="vanityfair_server\view\" />
     <Folder Include="vanityfair_server\static\" />
     <Folder Include="vanityfair_server\static\content\" />
     <Folder Include="vanityfair_server\static\fonts\" />
@@ -76,11 +92,8 @@
     <Content Include="vanityfair_server\static\scripts\respond.js" />
     <Content Include="vanityfair_server\static\scripts\respond.min.js" />
     <Content Include="vanityfair_server\static\scripts\_references.js" />
-    <Content Include="vanityfair_server\templates\about.html" />
-    <Content Include="vanityfair_server\templates\contact.html" />
     <Content Include="vanityfair_server\templates\index.html" />
     <Content Include="vanityfair_server\templates\layout.html" />
-    <None Include="VisFTP.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="venv\">
