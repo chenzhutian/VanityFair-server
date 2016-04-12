@@ -26,6 +26,9 @@
     <PublishUrl>
     </PublishUrl>
     <NameOfLastUsedPublishProfile>VisFTP</NameOfLastUsedPublishProfile>
+    <WebBrowserUrl>
+    </WebBrowserUrl>
+    <WebBrowserPort>5555</WebBrowserPort>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>

@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify
 from flask.views import MethodView
 
-test_api = Blueprint('test-api',__name__)
+test_api = Blueprint('test-api', __name__, subdomain="api")
 
 class TestAPI(MethodView):
     """description of class"""

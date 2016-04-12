@@ -35,6 +35,9 @@
     <Compile Include="main.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="tvcg.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="url_generator.py">
       <SubType>Code</SubType>
     </Compile>
