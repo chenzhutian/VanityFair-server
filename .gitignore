@@ -344,3 +344,5 @@ env/
 
 web.config
 web.debug.config
+Crawler/*.pdf
+Crawler/*.log
