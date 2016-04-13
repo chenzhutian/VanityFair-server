@@ -6,7 +6,7 @@
     <ProjectGuid>4b84bc11-b039-4990-ba9e-f4014c9a795c</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>main.py</StartupFile>
+    <StartupFile>tvcg.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>

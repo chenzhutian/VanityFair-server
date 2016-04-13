@@ -37,14 +37,14 @@ def crawl_url_of_each_year():
     def get_key(data_of_href):
         beg = data_of_href["url"].index("=")
         end = data_of_href["url"].index("&")
-        return int(data_of_href["url"][beg+1:end])
+        return int(data_of_href["url"][beg + 1:end])
 
     #data_of_hrefs.sort(key=get_key)
     data_of_hrefs.sort(key=get_key, reverse=True)
     return data_of_hrefs
 
 
-def extract_pdf_url(data_of_paper, cookies=None):
+def extract_pdf_url(data_of_paper, cookies = None):
     # return if paper data is exists
     global CACHE_JSON_OBJECT
     if os.path.isfile(PAPER_CACHE_DATA):
@@ -54,10 +54,10 @@ def extract_pdf_url(data_of_paper, cookies=None):
             paper_cache_file.close()
 
         if data_of_paper["id"] in CACHE_JSON_OBJECT:
-            print(data_of_paper["id"]+" is exitst")
+            print(data_of_paper["id"] + " is exitst")
             return True
         
-    request_result_of_pdf_page = requests.get(HOST_URL+data_of_paper["url"], cookies=cookies, 
+    request_result_of_pdf_page = requests.get(HOST_URL + data_of_paper["url"], cookies=cookies, 
                                               headers=REQUEST_HEADERS)
     cookies = request_result_of_pdf_page.cookies
     pdf_page = bs(request_result_of_pdf_page.text, "lxml")
@@ -69,7 +69,7 @@ def extract_pdf_url(data_of_paper, cookies=None):
     if src is None:
         with open("paper_cache_file.log","a") as log:
             json.dump(data_of_paper,log)
-        print(data_of_paper["id"]+" is error")
+        print(data_of_paper["id"] + " is error")
         return False
     src = src[:src.index("?")]
     # cache data
@@ -83,47 +83,48 @@ def extract_pdf_url(data_of_paper, cookies=None):
         with open(PAPER_CACHE_DATA,"w") as paper_cache:
             cache = [data_of_paper]
             json.dump(cache, paper_cache)
-    print(data_of_paper["id"]+" is finished")
+    print(data_of_paper["id"] + " is finished")
     return True
 
-def download_pdf(data_of_paper, cookies):
-    filename = data_of_paper["year"] + "_" +data_of_paper["id"]+"_"+data_of_paper["title"]+".pdf"
-    isInvalid = False
+def download_pdf(data_of_paper, cookies=None):
+    filename = data_of_paper["year"] + "_" + data_of_paper["id"] + "_" + data_of_paper["title"] + ".pdf"
+
     if os.path.isfile(filename):
         try:
             PyPDF2.PdfFileReader(open(filename, "rb"))
         except PyPDF2.utils.PdfReadError:
-            print("invalid PDF file:"+filename)
-            isInvalid = True
+            print("invalid PDF file:" + filename)
+            print("re-download paper")
         else:
-            print(data_of_paper["id"]+" is exitst")
+            print(data_of_paper["id"] + " is exitst")
             return True
-    
-    if isInvalid:
-        print("re-download paper")
 
-    request_result_of_pdf_page = requests.get(HOST_URL+data_of_paper["url"], cookies=cookies, 
-                                              headers=REQUEST_HEADERS)
-    cookies = request_result_of_pdf_page.cookies
-    pdf_page = bs(request_result_of_pdf_page.text, "lxml")
-    frames = pdf_page.find_all("frame")
     src = None
-    for frame in frames:
-        if frame["src"].startswith("http"):
-            src = frame["src"]
-    if src is None:
-        #with open("tvcg_log_file.log","a") as log:
-        #    json.dump(data_of_paper,log)
-        print(data_of_paper["id"]+" is error")
-        return False
-    src = src[:src.index("?")]
+    if "src" in data_of_paper:
+        src = data_of_paper["src"]
+    else:
+        request_result_of_pdf_page = requests.get(HOST_URL + data_of_paper["url"], cookies=cookies, 
+                                                headers=REQUEST_HEADERS)
+        cookies = request_result_of_pdf_page.cookies
+        pdf_page = bs(request_result_of_pdf_page.text, "lxml")
+        frames = pdf_page.find_all("frame")
+
+        for frame in frames:
+            if frame["src"].startswith("http"):
+                src = frame["src"]
+                
+        if src is None:
+            print(data_of_paper["id"] + " is error")
+            return False
+        
+        src = src[:src.index("?")]
    
     request_result_of_pdf = requests.get(src, stream=True, cookies=cookies, headers=REQUEST_HEADERS)
     with open(filename, 'wb') as fd:
         for chunk in request_result_of_pdf.iter_content(chunk_size=1024):
             if chunk:
                 fd.write(chunk)
-    print(data_of_paper["id"]+" is finished")
+    print(data_of_paper["id"] + " is finished")
     return True
 
 
@@ -131,7 +132,8 @@ def fix_error_pdf_url(file_name):
     with open(file_name,"r") as error_file:
         data_of_papers = json.load(error_file)
 
-    for data_of_paper in data_of_papers:
+
+    for idx, data_of_paper in enumerate(data_of_papers):
         if extract_pdf_url(data_of_paper):
             pass
         else:
@@ -154,7 +156,7 @@ def download_pdfs(page, year, cookies):
         if h3 is None:
             #with open("tvcg_log_file.log","a") as log:
             #    log.write(li.text+"\r\n")
-            print("page fail at "+year)
+            print("page fail at " + year)
             return False
         h3 = h3.find("h3")
         title_span = h3.find("span")
@@ -166,7 +168,7 @@ def download_pdfs(page, year, cookies):
             for a in authors.find_all("a"):
                 authors_name.append("".join(a.find("span", id="preferredName")["class"]))
         if id is not None:
-            data_of_papers.append({"url":"/stamp/stamp.jsp?tp=&arnumber="+id, 
+            data_of_papers.append({"url":"/stamp/stamp.jsp?tp=&arnumber=" + id, 
                                       "id":id, "title":title, "year":year, 
                                       "authors_name":authors_name})
 
@@ -183,13 +185,22 @@ def download_pdfs(page, year, cookies):
     #        time.sleep(30)
     return True
 
+def crawl_pdfs_from_cached(filename):
+    with open(filename,"r") as cache_file:
+        cache_datas = json.load(cache_file)
+        for id, paper_data in cache_datas:
+            if download_pdf(paper_data):
+                pass
+            else:
+                time.sleep(15)
+
 def crawl_all_pdfs():
     urls_of_volumes = crawl_url_of_each_year()
     file = open("urls_of_volumes.txt","w")
     json.dump(urls_of_volumes,file)
     file.close()
     for url_of_each_volume in urls_of_volumes:
-        request_result_of_volume = requests.get(HOST_URL+url_of_each_volume["url"])
+        request_result_of_volume = requests.get(HOST_URL + url_of_each_volume["url"])
         volum_page = bs(request_result_of_volume.text, "lxml")
         download_pdfs(volum_page,url_of_each_volume["year"], request_result_of_volume.cookies)
         
@@ -199,7 +210,7 @@ def crawl_all_pdfs():
         current_page = 2
         while current_page <= pages_num:
             url_of_next_page = url_of_each_volume["url"] + "&pageNumber=" + str(current_page)
-            request_result_of_page = requests.get(HOST_URL+url_of_next_page)
+            request_result_of_page = requests.get(HOST_URL + url_of_next_page)
             volum_page = bs(request_result_of_page.text, "lxml")
             if download_pdfs(volum_page,url_of_each_volume["year"], request_result_of_page.cookies) is False:
                 print(url_of_next_page)
