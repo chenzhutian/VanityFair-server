@@ -348,3 +348,5 @@ Crawler/*.pdf
 Crawler/*.log
 /Crawler/papers
 /Crawler/papers
+/Crawler/tvcg_papers.rar
+/pdf.js/

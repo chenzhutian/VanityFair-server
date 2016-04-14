@@ -10,6 +10,7 @@ import re
 import time
 import os.path
 from bs4 import BeautifulSoup as bs
+from contextlib import closing
 import PyPDF2
 
 HOST_URL = "http://ieeexplore.ieee.org"
@@ -87,23 +88,23 @@ def extract_pdf_url(data_of_paper, cookies = None):
     return True
 
 def download_pdf(data_of_paper, cookies=None):
-    filename = data_of_paper["year"] + "_" + data_of_paper["id"] + "_" + data_of_paper["title"] + ".pdf"
+    filename = data_of_paper["year"] + "_" +data_of_paper["id"]+"_"+data_of_paper["title"]+".pdf"
 
     if os.path.isfile(filename):
         try:
             PyPDF2.PdfFileReader(open(filename, "rb"))
         except PyPDF2.utils.PdfReadError:
-            print("invalid PDF file:" + filename)
+            print("invalid PDF file:"+filename)
             print("re-download paper")
         else:
-            print(data_of_paper["id"] + " is exitst")
+            print(data_of_paper["id"]+" is exitst")
             return True
 
     src = None
     if "src" in data_of_paper:
         src = data_of_paper["src"]
     else:
-        request_result_of_pdf_page = requests.get(HOST_URL + data_of_paper["url"], cookies=cookies, 
+        request_result_of_pdf_page = requests.get(HOST_URL+data_of_paper["url"], cookies=cookies, 
                                                 headers=REQUEST_HEADERS)
         cookies = request_result_of_pdf_page.cookies
         pdf_page = bs(request_result_of_pdf_page.text, "lxml")
@@ -114,17 +115,17 @@ def download_pdf(data_of_paper, cookies=None):
                 src = frame["src"]
                 
         if src is None:
-            print(data_of_paper["id"] + " is error")
+            print(data_of_paper["id"]+" is error")
             return False
         
         src = src[:src.index("?")]
    
-    request_result_of_pdf = requests.get(src, stream=True, cookies=cookies, headers=REQUEST_HEADERS)
-    with open(filename, 'wb') as fd:
-        for chunk in request_result_of_pdf.iter_content(chunk_size=1024):
-            if chunk:
-                fd.write(chunk)
-    print(data_of_paper["id"] + " is finished")
+    with closing(requests.get(src, stream=True, cookies=cookies, headers=REQUEST_HEADERS)) as request_result_of_pdf:
+        with open(filename, 'wb') as fd:
+            for chunk in request_result_of_pdf.iter_content(chunk_size=65536):
+                if chunk:
+                    fd.write(chunk)
+    print(data_of_paper["id"]+" is finished")
     return True
 
 
@@ -186,11 +187,14 @@ def download_pdfs(page, year, cookies):
     return True
 
 def crawl_pdfs_from_cached(filename):
-    with open(filename,"r") as cache_file:
+    with open(filename, "r") as cache_file:
         cache_datas = json.load(cache_file)
-        for id, paper_data in cache_datas:
-            if download_pdf(paper_data):
-                pass
+        count = 0
+        total = len(cache_datas)
+        for paper_id in cache_datas:
+            if download_pdf(cache_datas[paper_id]):
+                count += 1
+                print(str(count)+"/"+str(total))
             else:
                 time.sleep(15)
 
@@ -216,6 +220,52 @@ def crawl_all_pdfs():
                 print(url_of_next_page)
             current_page += 1
 
+def diff_cache_data():
+    local_data = {}
+    with open(PAPER_CACHE_DATA,"r") as full_cache:
+        with open("paper_cached_data_part.json","r") as part_cache:
+            full_data = json.load(full_cache)
+            part_data = json.load(part_cache)
+            for paper_id in full_data:
+                if paper_id not in part_data:
+                    local_data[paper_id] = full_data[paper_id]
+    with open("paper_cached_data_local.json","w") as local_cache:
+        json.dump(local_data,local_cache)
+
+def check_paper_validation(filename):
+    with open(filename, "r") as paper_cache:
+        papers_data = json.load(paper_cache)
+        FILE_VALIDATION = "paper_file_validation.json"
+        paper_file_validation = {}
+        
+        paper_count = len(papers_data)
+        for paper_id in papers_data:
+            data_of_paper = papers_data[paper_id]
+            paper_filename = data_of_paper["year"] + "_" +data_of_paper["id"]+"_"+data_of_paper["title"]+".pdf"
+
+            if os.path.isfile(paper_filename):
+                try:
+                    PyPDF2.PdfFileReader(open(paper_filename, "rb"))
+                except PyPDF2.utils.PdfReadError:
+                    print("invalid PDF file:"+paper_filename)
+                    print("re-download paper")
+                    # Record invalid pdf
+                    if paper_id not in paper_file_validation:
+                        paper_file_validation[paper_id] = data_of_paper
+                else:
+                    print(data_of_paper["id"]+" is exitst")
+            else:
+                print(data_of_paper["id"]+" is not exitsted")
+                paper_file_validation[paper_id] = data_of_paper
+
+        with open(FILE_VALIDATION, "w") as validation_file:
+            print(str(len(paper_file_validation)) + "/" + str(paper_count))
+            json.dump(paper_file_validation, validation_file)
+
+
 if __name__ == "__main__":
     #crawl_all_pdfs()
-    fix_error_pdf_url("paper_cache_file.json")
+    #fix_error_pdf_url("paper_cache_file.json")
+    #diff_cache_data()
+    #crawl_pdfs_from_cached("paper_cached_data_local.json")
+    check_paper_validation(PAPER_CACHE_DATA)
